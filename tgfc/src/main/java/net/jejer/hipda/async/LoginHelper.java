@@ -110,9 +110,10 @@ public class LoginHelper {
         post_param.put("loginfield", "username");
         post_param.put("username", HiSettingsHelper.getInstance().getUsername());
         post_param.put("password", HiSettingsHelper.getInstance().getPassword());
-        post_param.put("seccodeverify",HiSettingsHelper.getInstance().getSecCodeVerify());
+//        post_param.put("seccodeverify",HiSettingsHelper.getInstance().getSecCodeVerify());
         post_param.put("questionid", HiSettingsHelper.getInstance().getSecQuestion());
         post_param.put("answer", HiSettingsHelper.getInstance().getSecAnswer());
+        post_param.put("g-recaptcha-response",HiSettingsHelper.getInstance().getGoogleVerifyCode());
         post_param.put("cookietime", "2592000");
         post_param.put("loginsubmit", "true");
 

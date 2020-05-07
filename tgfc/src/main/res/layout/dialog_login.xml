@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/login_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/login_linear"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -27,24 +34,24 @@
             android:inputType="textPassword"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/login_seccodeverify"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/pref_title_seccodeverify"
-            android:ems="4"
-            android:layout_margin="8dp"
-            android:inputType="text"
-            android:maxLength="4"
-            android:visibility="visible"/>
+<!--        <EditText-->
+<!--            android:id="@+id/login_seccodeverify"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:hint="@string/pref_title_seccodeverify"-->
+<!--            android:ems="4"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:inputType="text"-->
+<!--            android:maxLength="4"-->
+<!--            android:visibility="visible"/>-->
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="80dp"
-            android:id="@+id/seccode_image"
-            android:layout_gravity="bottom"
-            android:layout_margin="8dp"
-            android:visibility="visible"/>
+<!--        <ImageView-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:id="@+id/seccode_image"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:visibility="visible"/>-->
 
         <Spinner
             android:id="@+id/login_question"
@@ -62,6 +69,15 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/login_googleverify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:text="Google 验证"
+            android:textSize="15sp" />
+
+        <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,5 +87,7 @@
             android:textSize="18sp" />
 
     </LinearLayout>
+
+    </FrameLayout>
 
 </ScrollView>

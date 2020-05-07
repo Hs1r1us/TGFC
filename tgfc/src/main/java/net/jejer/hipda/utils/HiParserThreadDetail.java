@@ -483,7 +483,9 @@ public class HiParserThreadDetail {
             if (src.startsWith(HiUtils.SMILE_PATH)
                     || SmallImages.contains(src)) {
                 //emotion added as img tag, will be parsed in TextViewWithEmoticon later
-                content.addText("<img src=\"" + HiUtils.BaseUrl + src + "\"/>");
+                if(!src.startsWith(HiUtils.Pic2_Url)) {
+                    content.addText("<img src=\"" + HiUtils.BaseUrl + src + "\"/>");
+                }
                 return false;
             } else if (src.equals("images/common/none.gif") || src.startsWith("attachments/day_") || src.startsWith("attachment.php")) {
                 //internal image

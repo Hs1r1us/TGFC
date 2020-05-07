@@ -10,9 +10,11 @@ import net.jejer.hipda.bean.HiSettingsHelper;
 import net.jejer.hipda.ui.HiApplication;
 
 public class HiUtils {
-    public static final String UserAgentPrefix = "TGFC NG";
+    public static final String UserAgentPrefix = "Mozilla/5.0 (Android 10; Mobile; rv:75.0)";
     public static final String BaseUrl = "https://club.tgfcer.com/";
+    public static final String Pic2_Url = "http://pic2.52tgfc.com/";
     public static final String SecCodeVerifyUrl = BaseUrl + "seccode.php?update=";
+    public static final String GoogleVerifyUrl = "https://wap.tgfcer.com/index.php?action=login";
     public static final String ThreadListUrl = BaseUrl + "forumdisplay.php?fid=";
     public static final String DetailListUrl = BaseUrl + "viewthread.php?tid=";
     public static final String ReplyUrl = BaseUrl + "post.php?action=reply&tid=";
@@ -176,7 +178,11 @@ public class HiUtils {
     }
 
     public static String getFullUrl(String particalUrl) {
-        return BaseUrl + particalUrl;
+        if(particalUrl.startsWith("http")) {
+            return particalUrl;
+        }else{
+            return BaseUrl + particalUrl;
+        }
     }
 
     public static String getAvatarUrlByUid(String uid) {

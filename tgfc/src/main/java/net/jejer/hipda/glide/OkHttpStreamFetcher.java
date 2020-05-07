@@ -32,6 +32,7 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
     private ResponseBody responseBody;
 
     private boolean isForumUrl;
+    private boolean isPic2Url;
     private String stringUrl;
 
     public OkHttpStreamFetcher(OkHttpClient client, GlideUrl url) {
@@ -44,6 +45,7 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
     public InputStream loadData(Priority priority) throws Exception {
         boolean isAvatarUrl = stringUrl.startsWith(HiUtils.AvatarBaseUrl);
         isForumUrl = isAvatarUrl ? isAvatarUrl : stringUrl.startsWith(HiUtils.BaseUrl);
+        isPic2Url = stringUrl.startsWith(HiUtils.Pic2_Url);
 
         return isAvatarUrl ? getAvatar() : getImage();
     }
@@ -135,6 +137,8 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
             requestBuilder.removeHeader("User-Agent");
             requestBuilder.header("User-Agent", HiUtils.getUserAgent());
             requestBuilder.addHeader("Referer",stringUrl);
+        }else if(isPic2Url) {
+            requestBuilder.removeHeader("Referer");
         }
 
         return requestBuilder.build();

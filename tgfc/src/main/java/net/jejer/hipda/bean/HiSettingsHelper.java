@@ -78,9 +78,10 @@ public class HiSettingsHelper {
 
     private String mUsername = "";
     private String mPassword = "";
-    private String mSecCodeVeriFy = "";
+//    private String mSecCodeVeriFy = "";
     private String mSecQuestion = "";
     private String mSecAnswer = "";
+    private String mGoogleVerifyCode = "";
     private String mUid = "";
 
     private boolean mShowStickThreads = false;
@@ -255,7 +256,7 @@ public class HiSettingsHelper {
         return mPassword;
     }
 
-    public String getSecCodeVerify() { return mSecCodeVeriFy; }
+//    public String getSecCodeVerify() { return mSecCodeVeriFy; }
 
     public void setPassword(String password) {
         mPassword = password;
@@ -263,9 +264,9 @@ public class HiSettingsHelper {
         editor.putString(PERF_PASSWORD, password).apply();
     }
 
-    public void setSecCodeVerity(String secCodeVerity) {
-        mSecCodeVeriFy = secCodeVerity;
-    }
+//    public void setSecCodeVerity(String secCodeVerity) {
+//        mSecCodeVeriFy = secCodeVerity;
+//    }
 
     public String getUid() {
         return mUid;
@@ -310,6 +311,14 @@ public class HiSettingsHelper {
         mSecAnswer = secAnswer;
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putString(PERF_SECANSWER, secAnswer).apply();
+    }
+
+    public String getGoogleVerifyCode(){
+        return mGoogleVerifyCode;
+    }
+
+    public void setGoogleVerifyCode(String googleVerifyCode){
+        mGoogleVerifyCode = googleVerifyCode;
     }
 
     public boolean isShowPostType() {

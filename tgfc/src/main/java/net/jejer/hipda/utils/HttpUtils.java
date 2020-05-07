@@ -48,7 +48,7 @@ public class HttpUtils {
         String authCookie = OkHttpHelper.getInstance().getAuthCookie();
 
         if (TextUtils.isEmpty(url) || TextUtils.isEmpty(filename)
-                || (url.startsWith(HiUtils.BaseUrl) && TextUtils.isEmpty(authCookie))) {
+                || ((url.startsWith(HiUtils.BaseUrl) || (url.startsWith(HiUtils.Pic2_Url)) && TextUtils.isEmpty(authCookie)))) {
             Toast.makeText(ctx, "下载信息不完整，无法进行下载", Toast.LENGTH_SHORT).show();
             return;
         }
