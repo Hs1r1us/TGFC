@@ -21,6 +21,8 @@ import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.greenrobot.event.EventBus;
 
@@ -143,7 +145,15 @@ public class LoginHelper {
                 mErrorMsg = "您输入的验证码不正确，请返回修改。";
                 return Constants.STATUS_SECCODE_FAIL_ABORT;
             } else {
-                mErrorMsg = "登录失败,未知错误";
+                String mPattern = "<p>.*?<\\/p>";
+                Pattern r = Pattern.compile(mPattern);
+                Matcher m = r.matcher(rspStr.substring(rspStr.indexOf("</h1>")));
+                if (m.find()) {
+                    String matcherStr = m.group();
+                    mErrorMsg = "登录失败:" + matcherStr.substring(3,matcherStr.length()-4);
+                }else {
+                    mErrorMsg = "登录失败，未知错误";
+                }
                 return Constants.STATUS_FAIL_ABORT;
             }
         } catch (Exception e) {

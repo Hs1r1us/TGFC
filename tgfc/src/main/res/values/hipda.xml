@@ -3,7 +3,7 @@
 
     <string name="login_success">"欢迎您回来"</string>
     <string name="login_fail">"登录失败"</string>
-    <string name="login_seccode_fail">"验证码不正确"</string>
+    <string name="login_seccode_fail">"验证码"</string>
     <string name="not_login">"logging.php?action=login"</string>
     <string name="default_tail_text">"TGFC·NG"</string>
     <string name="default_tail_url">"https://bbs.tgfcer.com/thread-7194126-1-1.html"</string>
