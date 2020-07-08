@@ -130,27 +130,14 @@ public class LoginHelper {
             if (rspStr.contains(mCtx.getString(R.string.login_success))) {
                 Logger.v("Login success!");
                 return Constants.STATUS_SUCCESS;
-            } else if (rspStr.contains(mCtx.getString(R.string.login_fail))) {
-                Logger.e("Login FAIL");
-                int msgIndex = rspStr.indexOf(mCtx.getString(R.string.login_fail));
-                int msgIndexEnd = rspStr.indexOf("次", msgIndex) + 1;
-                if (msgIndexEnd > msgIndex) {
-                    mErrorMsg = rspStr.substring(msgIndex, msgIndexEnd);
-                } else {
-                    mErrorMsg = "登录失败,请检查账户信息";
-                }
-                return Constants.STATUS_FAIL_ABORT;
-            } else if (rspStr.contains(mCtx.getString(R.string.login_seccode_fail))) {
-                Logger.e("Login FAIL");
-                mErrorMsg = "您输入的验证码不正确，请返回修改。";
-                return Constants.STATUS_SECCODE_FAIL_ABORT;
-            } else {
-                String mPattern = "<p>.*?<\\/p>";
-                Pattern r = Pattern.compile(mPattern);
-                Matcher m = r.matcher(rspStr.substring(rspStr.indexOf("</h1>")));
-                if (m.find()) {
-                    String matcherStr = m.group();
-                    mErrorMsg = "登录失败:" + matcherStr.substring(3,matcherStr.length()-4);
+            }else if(rspStr.contains("安全提问")) {
+                mErrorMsg = "登录失败，请正确回答安全提问";
+                return Constants.STATUS_FAIL;
+            }else{
+                Document doc = Jsoup.parse(rspStr);
+                String errorMsg = doc.select("div.box p").text();
+                if(!errorMsg.isEmpty()){
+                    mErrorMsg = "登录失败:" + errorMsg;
                 }else {
                     mErrorMsg = "登录失败，未知错误";
                 }

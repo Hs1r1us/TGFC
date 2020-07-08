@@ -468,7 +468,7 @@ public class HiParser {
 
                 Elements postmessageES = smsDetailES.select("div.postmessage");
                 String mySmsDetail = postmessageES.select("div.quote blockquote").text();
-                String authorSmsDetail = HttpUtils.getMiddleString(postmessageES.first().toString(), "<div data-plugin=\"autoitem\" class=\"postmessage\">", "</div>");
+                String authorSmsDetail = HttpUtils.getMiddleString(postmessageES.first().toString(), "<div data-plugin=\"autoitem\" class=\"postmessage\">", "");
                 smsDetail = authorSmsDetail;
             }
         } else if(doc.text().contains("您的信箱已满")) {

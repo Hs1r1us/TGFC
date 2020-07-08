@@ -7,8 +7,10 @@ import android.app.LoaderManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -345,25 +347,30 @@ public class ThreadListFragment extends BaseFragment
     }
 
     private void newThread() {
-        Bundle arguments = new Bundle();
-        arguments.putInt(PostFragment.ARG_MODE_KEY, PostAsyncTask.MODE_NEW_THREAD);
-        arguments.putString(PostFragment.ARG_FID_KEY, mForumId + "");
-
-        PostFragment fragment = new PostFragment();
-        fragment.setArguments(arguments);
-        fragment.setPostListener(this);
-
-        if (HiSettingsHelper.getInstance().getIsLandscape()) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.main_frame_container, fragment, PostFragment.class.getName())
-                    .addToBackStack(PostFragment.class.getName())
-                    .commit();
-        } else {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.main_frame_container, fragment, PostFragment.class.getName())
-                    .addToBackStack(PostFragment.class.getName())
-                    .commit();
-        }
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        Uri content_url = Uri.parse("https://wap.tgfcer.com/index.php?action=post&do=newthread&fid=" + mForumId);
+        intent.setData(content_url);
+        startActivity(Intent.createChooser(intent, "选择浏览器打开WAP页面"));
+//        Bundle arguments = new Bundle();
+//        arguments.putInt(PostFragment.ARG_MODE_KEY, PostAsyncTask.MODE_NEW_THREAD);
+//        arguments.putString(PostFragment.ARG_FID_KEY, mForumId + "");
+//
+//        PostFragment fragment = new PostFragment();
+//        fragment.setArguments(arguments);
+//        fragment.setPostListener(this);
+//
+//        if (HiSettingsHelper.getInstance().getIsLandscape()) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.main_frame_container, fragment, PostFragment.class.getName())
+//                    .addToBackStack(PostFragment.class.getName())
+//                    .commit();
+//        } else {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.main_frame_container, fragment, PostFragment.class.getName())
+//                    .addToBackStack(PostFragment.class.getName())
+//                    .commit();
+//        }
     }
 
     public void resetActionBarTitle() {
