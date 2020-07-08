@@ -51,8 +51,6 @@ public class OkHttpHelper {
         client.setConnectTimeout(OkHttpHelper.NETWORK_TIMEOUT_SECS, TimeUnit.SECONDS);
         client.setReadTimeout(OkHttpHelper.NETWORK_TIMEOUT_SECS, TimeUnit.SECONDS);
         client.setWriteTimeout(OkHttpHelper.NETWORK_TIMEOUT_SECS, TimeUnit.SECONDS);
-        client.setFollowRedirects(false);
-        client.setFollowSslRedirects(false);
 
         cookieStore = new PersistentCookieStore(HiApplication.getAppContext());
         CookieManager cookieManager = new CookieManager(cookieStore, CookiePolicy.ACCEPT_ORIGINAL_SERVER);
