@@ -768,7 +768,7 @@ public class ThreadListFragment extends BaseFragment
                     mTipBar.setVisibility(View.VISIBLE);
                     mThreadBeans.clear();
                     mThreadListAdapter.setBeans(mThreadBeans);
-                    showLoginDialog();
+                    //showLoginDialog();
                     break;
             }
             return false;

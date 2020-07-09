@@ -21,6 +21,11 @@ import net.jejer.hipda.utils.Logger;
 import net.jejer.hipda.utils.NotificationMgr;
 import net.jejer.hipda.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
@@ -44,9 +49,9 @@ public class UpdateHelper {
         mCtx = ctx;
         mSilent = isSilent;
 
-        checkSite = "coding";
-        checkUrl = "https://coding.net/u/mijuu/p/TGFC/git/raw/master/tgfc-ng.md";
-        downloadUrl = "https://coding.net/u/mijuu/p/TGFC/git/raw/master/releases/tgfc-ng-release-{version}.apk";
+        checkSite = "github";
+        checkUrl = "https://api.github.com/repos/Hs1r1us/TGFC/releases/latest";
+        downloadUrl = "https://github.com/Hs1r1us/TGFC/releases/download/v{version}/tgfc-ng-release-{version}.apk";
 
     }
 
@@ -76,6 +81,7 @@ public class UpdateHelper {
                 }
             });
         }
+
         OkHttpHelper.getInstance().asyncGet(checkUrl, new UpdateCheckCallback());
     }
 
@@ -91,8 +97,25 @@ public class UpdateHelper {
 
         @Override
         public void onResponse(final String response) {
-            processUpdate(response);
+            processUpdate(processGithubBody(response));
         }
+    }
+
+    private String processGithubBody(String response) {
+        String result = "999";
+        Document doc = Jsoup.parse(response);
+        String JsonStr = doc.select("body").text();
+        if (!JsonStr.isEmpty()) {
+            try {
+                JSONObject jsonObj = new JSONObject(JsonStr);
+                result = jsonObj.getString("tag_name") + "\n";
+                String updateNote = jsonObj.getString("body");
+                result += updateNote.isEmpty()?"无更新日志":updateNote;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     private void processUpdate(String response) {
