@@ -88,7 +88,11 @@ public class PersistentCookieStore implements CookieStore {
     @Override
     public List<HttpCookie> get(URI uri) {
         ArrayList<HttpCookie> ret = new ArrayList<>();
-        if (cookies.containsKey(uri.getHost()))
+        if (uri.getHost().endsWith(COOKIE_DOMAIN))
+            for(Map.Entry<String, ConcurrentHashMap<String, HttpCookie>> entry:cookies.entrySet())
+                if(entry.getKey().endsWith(COOKIE_DOMAIN))
+                    ret.addAll(entry.getValue().values());
+        else if (cookies.containsKey(uri.getHost()))
             ret.addAll(cookies.get(uri.getHost()).values());
         return ret;
     }

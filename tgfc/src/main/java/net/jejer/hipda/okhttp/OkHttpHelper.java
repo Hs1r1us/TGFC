@@ -105,7 +105,24 @@ public class OkHttpHelper {
         return reqBuilder.build();
     }
 
+    private boolean IsLions = false;
+    private String LionsUrlCheck(String url) {
+        String Result = url;
+        if (Result.contains("fid")) {
+            if (Result.contains("fid=25"))
+                IsLions = true;
+            else
+                IsLions = false;
+        }
+        if(IsLions)
+            Result = url.replace(HiUtils.BaseUrl,HiUtils.LionsUrl);
+        return Result;
+    }
+
     public String get(String url) throws IOException {
+
+        url = LionsUrlCheck(url);
+
         Request request = buildGetRequest(url, null);
 
         Call call = client.newCall(request);
@@ -134,6 +151,9 @@ public class OkHttpHelper {
     }
 
     public void asyncGet(String url, ResultCallback callback, Object tag) {
+
+        url = LionsUrlCheck(url);
+
         if (callback == null) callback = DEFAULT_CALLBACK;
         final ResultCallback rspCallBack = callback;
 
@@ -157,6 +177,9 @@ public class OkHttpHelper {
     }
 
     public String post(String url, Map<String, String> params) throws IOException {
+
+        url = LionsUrlCheck(url);
+
         Request request = buildPostFormRequest(url, params, null);
         Response response = client.newCall(request).execute();
         return getResponseBody(response);

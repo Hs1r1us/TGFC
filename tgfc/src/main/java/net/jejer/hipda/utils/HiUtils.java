@@ -50,6 +50,8 @@ public class HiUtils {
     public static final String RatingSubmit = BaseUrl + "misc.php?action=rate&inajax=1";
     public static final String PreRating = BaseUrl + "misc.php?action=rate";
 
+    public static final String LionsUrl = "https://s.tgfcer.com/";
+
     private static String userAgent;
 
     public final static String SMILE_PATH = "images/smilies/";
