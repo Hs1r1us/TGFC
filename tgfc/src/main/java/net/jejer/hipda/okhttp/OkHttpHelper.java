@@ -108,7 +108,7 @@ public class OkHttpHelper {
     private boolean IsLions = false;
     private String LionsUrlCheck(String url) {
         String Result = url;
-        if (Result.contains("fid")) {
+        if (Result.contains("fid") && !Result.contains("fid=null")) {
             if (Result.contains("fid=25"))
                 IsLions = true;
             else
