@@ -11,7 +11,7 @@ import net.jejer.hipda.ui.HiApplication;
 
 public class HiUtils {
     public static final String UserAgentPrefix = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36";
-    public static final String BaseUrl = "https://club.tgfcer.com/";
+    public static final String BaseUrl = "https://bbs.tgfcer.com/";
     public static final String Pic2_Url = "http://pic2.52tgfc.com/";
     public static final String SecCodeVerifyUrl = BaseUrl + "seccode.php?update=";
     public static final String GoogleVerifyUrl = "https://wap.tgfcer.com/index.php?action=login";
